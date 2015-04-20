@@ -30,6 +30,7 @@ for link in links:
 	url = 'http://www.cambridgeshire.gov.uk' + link['href']
 	if 'download/downloads/id' in url:
 		title = link.contents[0].strip()
+  		title = link.encode_contents(formatter='html').replace('&nbsp;',' ') #  gets rid of erroneous &nbsp; chars
 		if '.csv' in title:
 			# create the right strings for the new filename
 			csvYr = title.split(' ')[-1][:4]
