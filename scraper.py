@@ -29,7 +29,7 @@ links = block.findAll('a', href=True)
 for link in links:
 	url = 'http://www.cambridgeshire.gov.uk' + link['href']
 	if 'download/downloads/id' in url:
-		title = link.contents[0]
+		title = link.contents[0].strip()
 		if '.csv' in title:
 			# create the right strings for the new filename
 			csvYr = title.split(' ')[-1][:4]
