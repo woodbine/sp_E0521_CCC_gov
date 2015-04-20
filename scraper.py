@@ -30,13 +30,13 @@ for link in links:
 	url = 'http://www.cambridgeshire.gov.uk' + link['href']
 	if 'download/downloads/id' in url:
 		title = link.contents[0]
-		print title
-		# create the right strings for the new filename
-		csvYr = title.split(' ')[-1][:4]
-		csvMth = title.split(' ')[-2][:3]
-		csvMth = csvMth.upper()
-		csvMth = convert_mth_strings(csvMth);
-		filename = entity_id + "_" + csvYr + "_" + csvMth + ".csv"
-		todays_date = str(datetime.now())
-		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": url, "f": filename, "d": todays_date })
-		print filename
+		if '.csv' in title:
+			# create the right strings for the new filename
+			csvYr = title.split(' ')[-1][:4]
+			csvMth = title.split(' ')[-2][:3]
+			csvMth = csvMth.upper()
+			csvMth = convert_mth_strings(csvMth);
+			filename = entity_id + "_" + csvYr + "_" + csvMth + ".csv"
+			todays_date = str(datetime.now())
+			scraperwiki.sqlite.save(unique_keys=['l'], data={"l": url, "f": filename, "d": todays_date })
+			print filename
