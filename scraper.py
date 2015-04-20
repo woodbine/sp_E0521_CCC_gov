@@ -31,7 +31,7 @@ for link in links:
 	if 'download/downloads/id' in url:
 		#title = link.contents[0]
   		title = link.encode_contents(formatter='html').replace('&nbsp;',' ').strip() #  gets rid of erroneous &nbsp; chars
-		#title = title
+		title = title.replace('_',' ') # replace underscores
 		if '.csv' in title:
 			# create the right strings for the new filename
 			csvYr = title.split(' ')[-1][:4]
